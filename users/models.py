@@ -1,3 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+class CustomUser(AbstractUser):
+	
+	TYPE = [
+			'Reader',
+			'Writer',
+	]
+	user_type = models.CharField(max_length=20,choice=TYPE)
 
 # Create your models here.
