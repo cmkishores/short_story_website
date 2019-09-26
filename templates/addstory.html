@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Add new Story {% endblock title  %}
+
+{% block body %}
+{% if request.user.is_authenticated %}
+
+<h1 class="text-dark" >Add a new Story</h1>
+
+<form action="" method="post" class="text-dark" enctype="multipart/form-data">{% csrf_token %}
+	
+	{{ form|crispy }}
+	
+	<button class ="btn btn-outline-dark font-weight-bold col-ml-5 mr-5 md-4 "  type="submit">Add</button>
+</form>
+
+{% else %}
+  		<div class="alert alert-danger" role="alert">
+  				You are not Logged In !!
+  				<a href="{% url 'login' %}" >Log In</a>
+		</div>
+		<div class="alert alert-warning" role="alert">
+  				Not an existing user ?<a href="{% url 'signup' %}" >Sign Up !</a>
+		</div>
+{% endif %} 		 
+{% endblock body %}	
+ 

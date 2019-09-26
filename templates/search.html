@@ -1,20 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title %} Stories {% endblock title %}
-
-{% block body %}
+{% block title %} Search {% endblock title %}
 
 
-    <ul class="list-inline" > 
+{% block body %}<ul class="list-inline" > 
 	
-          {% for element in storylist reversed %}
+
+          {% for element in searchstorylist reversed %}
             <a class = "card-link text-danger text-danger " href="{% url 'review' element.id %}">
-                <div class="card" style="box-sizing:400px" >
+                <div class="card" style="box-sizing:200px" >
                 <div class="card-body">
                   <li class="list-inline-item"> 
-                    <h4 > {{ element.name }} ( {{ element.release_year }} ) </h4>
+                    <h4 >  {{ element.name }} ( {{ element.release_year }} ) </h4>
                     <h6 class="text-muted" > Added {{ element.created_at|timesince }} Ago</h6>
-                    <h5> Authot: {{ element.author }}</h5>
+                   
                   </li>
                 </div>
                 </div> 
@@ -23,4 +22,4 @@
             {% endfor %}
   	</ul>
 
- {% endblock body %}
+  {% endblock body %}

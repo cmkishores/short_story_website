@@ -4,8 +4,8 @@ from django.contrib.auth.models import AbstractUser
 class CustomUser(AbstractUser):
 	
 	TYPE = [
-			'Reader',
-			'Writer',
+			('RD','Reader'),
+			('WR','Writer'),
 	]
 	user_type = models.CharField(max_length=20,choice=TYPE)
 

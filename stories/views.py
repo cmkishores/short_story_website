@@ -17,27 +17,27 @@ class StoryListView(LoginRequiredMixin, ListView):
 class StoryDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
 	model = Story
 	template_name = 'story.html'
-	permission_required = 'Story.special_access'
+	permission_required = 'Story.prime_member'
 
-class AddstoryView(LoginRequiredMixin,CreateView):
+class AddStoryView(LoginRequiredMixin,CreateView):
 	model = Story
 	template_name = 'addstory.html'
-	fields = ['name','author','release_year','genre','cover''story',]
+	fields = ['name','author','release_year','genre','cover','story',]
 	
 	def form_valid(self, form):
 		form.instance.owner = self.request.user
 		return super().form_valid(form)
 
-class EditstoryView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class EditStoryView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Story
 	template_name = 'editstory.html'
-	fields = ['name','author','release_year','genre','cover''story',]
+	fields = ['name','author','release_year','genre','cover','story',]
 	
 	def test_func(self):
 		obj = self.get_object()
 		return obj.owner == self.request.user
 
-class DeletestoryView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class DeleteStoryView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Story
 	template_name = 'deletestory.html'
 	success_url = reverse_lazy('home')
