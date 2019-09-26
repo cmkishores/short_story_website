@@ -4,12 +4,13 @@
 
 {% block body %}
 
-
+	<h1>Welcome </h1>
     <ul class="list-inline" > 
+
 	
           {% for element in storylist reversed %}
-            <a class = "card-link text-danger text-danger " href="{% url 'review' element.id %}">
-                <div class="card" style="box-sizing:400px" >
+            <a class = "card-link text-danger text-danger " href="{% url 'story' element.id %}">
+                <div class="card " style="box-sizing:400px" >
                 <div class="card-body">
                   <li class="list-inline-item"> 
                     <h4 > {{ element.name }} ( {{ element.release_year }} ) </h4>
@@ -22,5 +23,5 @@
   
             {% endfor %}
   	</ul>
-
+  	<a class="btn" href="{% url 'orders' %}"> Buy Membership</a>
  {% endblock body %}

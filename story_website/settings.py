@@ -25,7 +25,7 @@ SECRET_KEY = 'obzsec*p%^c(@r^pll7@ulc(irij4wcd)-)3#kr_wwht&edl8p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     #local apps
     'stories.apps.StoriesConfig',
     'users.apps.UsersConfig',
+    'orders.apps.OrdersConfig'
 ]
 
 MIDDLEWARE = [
@@ -124,5 +125,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+
 STATIC_URL = '/static/'
+
+#Custom user model and login,logout redirect urls
+AUTH_USER_MODEL = 'users.CustomUser'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#media files url and directory
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STRIPE_TEST_PUBLIC_KEY = 'pk_test_b9fSSBEKXopOEQrReqN4lc8C00WETyNHjB'
+STRIPE_TEST_SECRET_KEY = 'sk_test_c46oYL6elMuR8hzKifaH1Huf00h8aem7zJ'
 

@@ -7,6 +7,6 @@ class CustomUser(AbstractUser):
 			('RD','Reader'),
 			('WR','Writer'),
 	]
-	user_type = models.CharField(max_length=20,choice=TYPE)
+	user_type = models.CharField(max_length=20,choices=TYPE)
 
 # Create your models here.

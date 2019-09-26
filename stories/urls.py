@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import StoryListView,StoryDetailView,EditStoryView,DeleteStoryView,SearchStoryView
+from .views import StoryListView,StoryDetailView,EditStoryView,DeleteStoryView,SearchStoryView,AddStoryView
 
 urlpatterns= [
 	path('',StoryListView.as_view(),name='home'),

@@ -10,14 +10,14 @@ from .models import Story
 
 class StoryListView(LoginRequiredMixin, ListView):
 	model = Story
-	template_name = 'home.html'
+	template_name = 'index.html'
 	context_object_name = 'storylist'
 	login_url='login'
 
 class StoryDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
 	model = Story
 	template_name = 'story.html'
-	permission_required = 'Story.prime_member'
+	permission_required = 'stories.prime_member'
 
 class AddStoryView(LoginRequiredMixin,CreateView):
 	model = Story
