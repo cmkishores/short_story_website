@@ -9,17 +9,7 @@
 
 <p>Buy for $10.00</p>
 
-<form method="post" action="{% url 'done' %}" >
-{% csrf_token %}
 
-<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="{{ stripe_key }}"
-    data-description="All Books"
-    data-amount="1000"
-    data-locale="auto">
-</script>	
-
-</form>
 
  {% endblock body %}
 

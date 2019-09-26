@@ -5,14 +5,48 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin,P
 from django.db.models.query_utils import Q
 
 from django.urls import reverse_lazy
+import stripe
 
 from .models import Story
+from django.conf import settings
+stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
+
 
 class StoryListView(LoginRequiredMixin, ListView):
 	model = Story
 	template_name = 'index.html'
 	context_object_name = 'storylist'
 	login_url='login'
+
+	def get_context_data(self,**kwargs):
+		context = super().get_context_data(**kwargs)
+		context['stripe_key'] = settings.STRIPE_TEST_PUBLIC_KEY
+		return context
+
+
+def charge(request):
+
+
+	# takes the permission we set in the model and access using codename
+	permission = Permission.objects.get(codename='prime_member')
+	
+	#get the current user credentials
+
+	u= request.user
+
+	#change the permission of user after payment
+
+	u.user_permissions.add(permission)
+
+	if request.method == 'POST':
+		charge = stripe.Charge.create(
+			amount = 1000,
+			currency='usd',
+			description='Purchase all stories',
+			source=request.POST['stripeToken']
+			)
+		return render(request, 'paymentdone.html')
+
 
 class StoryDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
 	model = Story

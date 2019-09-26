@@ -5,23 +5,57 @@
 {% block body %}
 
 	<h1>Welcome </h1>
-    <ul class="list-inline" > 
+    
 
-	
+	 <div class="d-flex flex-fill">
           {% for element in storylist reversed %}
-            <a class = "card-link text-danger text-danger " href="{% url 'story' element.id %}">
-                <div class="card " style="box-sizing:400px" >
-                <div class="card-body">
-                  <li class="list-inline-item"> 
+            
+
+            <a class = "card-link text-dark text-danger " href="{% url 'story' element.id %}">
+               <div class="col card p-2" style="width:300px;" >
+                <div class="card-body ">
+                 
                     <h4 > {{ element.name }} ( {{ element.release_year }} ) </h4>
                     <h6 class="text-muted" > Added {{ element.created_at|timesince }} Ago</h6>
-                    <h5> Authot: {{ element.author }}</h5>
-                  </li>
+                    <h5> Author: {{ element.author }}</h5>
+                    <p class="text-muted">Story: {{ element.story|slice:":5" }}...Click to read more</p>
+                  
                 </div>
-                </div> 
+                </div>
+               
+
             </a>
-  
+
             {% endfor %}
-  	</ul>
-  	<a class="btn" href="{% url 'orders' %}"> Buy Membership</a>
+  
+            </div>
+	
+            {% if user.user_type == "WR" %}
+
+            	<a href="{% url 'addstory' %}" class="btn btn-white" > Add a story</a>
+            {% endif %}
+
+<div class="card col mt-5" >
+ 	<div class="card-body" >
+ 		<h2> Dont have a membership? Buy with the link below !</h2>
+ 		<p>
+  	<form method="post" action="{% url 'done' %}" >
+{% csrf_token %}
+
+
+
+<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="{{ stripe_key }}"
+    data-description="All Books"
+    data-amount="1000"
+    data-locale="auto">
+</script>	
+	
+</form>
+</p>
+</div>
+</div>
+
+
+
  {% endblock body %}

@@ -5,14 +5,15 @@
 {% endblock title %}
 
 {% block body %}
-
+<div class="container mt-5">
 <div class="card" style="box-sizing:200px" >
   <div class="card-body">
 
    <h1>{{ story.name }} </h1>
 
-   <img class="card-img" src="{{ story.cover.url }}" alt="{{ story.name }}">
+	<img class= "card-img" style="height:200px; width:150px;" src="{{ story.cover.url }}" alt="{{ story.name }}">
 
+   
    
 	<blockquote class="blockquote">
 	<p class="mb-0 mt-4"> {{ story.story }} </p>
@@ -29,5 +30,5 @@
  	
 
 
-
+</div>
 {% endblock body %}

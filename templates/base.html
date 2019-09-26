@@ -33,15 +33,31 @@
 <body>
 
 
-<nav class="navbar navbar-dark green lighten-1">
+<nav class="navbar navbar-dark cyan darken-1">
 	<a class="navbar-brand" href="{% url 'home' %}">Stories</a>
+	<ul class="nav  md-tabs cyan darken-1 mx-0 mb-0 mt-1 ">
+  <li class="nav-item">
+    <a class="nav-link active text-white font-weight-bold" href="{% url 'logout' %}">Log out</a>
+  </li>
+  <li class="nav-item ">
+    <a class="nav-link text-white font-weight-bold" href="{% url 'password_change' %}">Change Password</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-white font-weight-bold" href="{% url 'password_reset' %}">Reset Password</a>
+  </li>
+</ul>
+
+
+
+
   <form class="form-inline my-2 my-lg-0 ml-auto">
+
     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
   </form>
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid ">
 
 {% block body %}
 
